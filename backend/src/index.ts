@@ -1,51 +1,61 @@
-import * as dotenv from "dotenv"; // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
+import * as dotenv from "dotenv";
 dotenv.config();
 
-import cors from "cors";
 import express from "express";
-import mongoose from "mongoose";
-import path from "path";
+import cors from "cors";
+import expressSession from "express-session"
+import { PrismaSessionStore } from "@quixo3/prisma-session-store";
+import prisma from "./db";
+import { PrismaClient } from "@prisma/client";
 
 const app = express();
 
 const port = process.env.PORT || 3000;
 
-declare module "express-serve-static-core" {
-  interface Request {
-    user?: any;
+declare module "express-session" {
+  interface SessionData {
+    userId: string;
   }
 }
 
-const corsOptions = {
-  origin: "http://localhost:3002",
-  credentials: true,
-};
-
-app.use(cors(corsOptions));
-app.use(express.json());
-mongoose.connect(
-  process.env.MONGO_URL as string
+app.use(
+  cors({
+    origin: "http://localhost:3001",
+    credentials: true,
+  })
 );
-mongoose.connection.on("error", console.error);
+app.use(express.json());
+app.use(
+    expressSession({
+        cookie: {
+            maxAge: 7 * 24 * 60 * 60 * 1000 // ms
+        },
+        secret: process.env.SECRET || "yolo",
+        resave: true,
+        saveUninitialized: true,
+        rolling: true,
+        store: new PrismaSessionStore(
+            prisma,
+            {
+                checkPeriod: 2 * 60 *1000,
+                dbRecordIdIsSessionId: true,
+                dbRecordIdFunction: undefined
+            }
+        )
+    })
+)
 
-const apiRouter = express.Router();
+import admin from "./routes/admin"
+import auth from "./routes/auth"
+import hours from "./routes/hours"
+import siteadmin from "./routes/siteadmin"
+import verify from "./routes/verify"
+app.use("/admin", admin)
+app.use(auth)
+app.use(hours)
+app.use(siteadmin)
+app.use(verify)
 
-import auth from "./routes/auth";
-import hours from "./routes/hours";
-import admin from "./routes/admin";
-apiRouter.use(auth);
-apiRouter.use(hours);
-apiRouter.use("/admin", admin);
-
-if (process.env.ENVIRONMENT == "production") {
-  app.use("/api", apiRouter);
-  app.use(express.static(path.join(__dirname, "../../frontend/build")));
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "../../frontend/build/index.html"));
-  });
-} else {
-  app.use(apiRouter);
-}
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);

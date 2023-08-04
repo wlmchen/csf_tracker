@@ -12,10 +12,10 @@ export default function App() {
       <AuthProvider>
         <ThemeProvider>
           <Routes>
-            <Route element={<ProtectedRoute />}>
+            <Route element={<ProtectedRoute roles={["ADMIN", "USER", "SITEADMIN"]} />}>
               <Route path="/dashboard" element={<Dashboard />} />
             </Route>
-            <Route element={<ProtectedRoute admin={true} />}>
+            <Route element={<ProtectedRoute roles={["ADMIN", "SITEADMIN"]} />}>
               <Route path="/admin" element={<Admin />} />
             </Route>
             <Route element={<ProtectedRoute unprotected={true} />}>

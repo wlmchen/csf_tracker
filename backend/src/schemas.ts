@@ -1,5 +1,4 @@
-const Joi = require("joi").extend(require("@joi/date"));
-
+import Joi from "joi";
 
 export const hourSchema = Joi.object({
     date: Joi.date().required(),
@@ -8,4 +7,4 @@ export const hourSchema = Joi.object({
     description: Joi.string().required(),
     supervisor_name: Joi.string().required(),
     supervisor_contact: Joi.string().email().required(),
-})
+  })

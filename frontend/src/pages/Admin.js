@@ -94,7 +94,7 @@ export default function Admin() {
       onRowDelete: (oldData) => {
         return new Promise((resolve, reject) => {
           fetch(
-            `${process.env.REACT_APP_BACKEND_URL}/admin/${member.userid}/${oldData._id}`,
+            `${process.env.REACT_APP_BACKEND_URL}/admin/${oldData.id}`,
             {
               method: "DELETE",
               credentials: "include",
@@ -113,7 +113,7 @@ export default function Admin() {
       onRowUpdate: (newData, oldData) => {
         return new Promise((resolve, reject) => {
           fetch(
-            `${process.env.REACT_APP_BACKEND_URL}/admin/${member.userid}/${oldData._id}`,
+            `${process.env.REACT_APP_BACKEND_URL}/admin/${oldData.id}`,
             {
               method: "PUT",
               credentials: "include",
@@ -149,12 +149,11 @@ export default function Admin() {
   return (
     <>
       <Header />
-
       <Container>
         <Box component="main" sx={{ p: 3 }}>
           {data ? (
             data.map((member) => (
-              <Accordion key={member._id}>
+              <Accordion key={member.id}>
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                   <Typography sx={{ width: "33%", flexShrink: 0 }}>
                     {member.name}

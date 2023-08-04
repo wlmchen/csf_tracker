@@ -1,38 +1,25 @@
 import express from "express";
-import fetch from "node-fetch";
-import { CsfUser } from "../models";
+import prisma from "../db";
+import { Role } from "@prisma/client";
 
-export default function auth(admin: boolean) {
+export default function userAuth(roles: Role[]) {
   return async (
     req: express.Request,
     res: express.Response,
     next: express.NextFunction
   ) => {
-    const resp = await fetch(new URL("/user", process.env.AUTH_URL).href, {
-      method: "GET",
-      headers: {
-        cookie: req.header("cookie") || "",
-      },
-    });
-    if (!resp.ok) {
+    if (!req.session.userId) {
       return res.status(401).json({ message: "Not Logged In" });
     }
-    const user = await resp.json();
+    const user = await prisma.user.findUnique({
+        where: {
+            id: req.session.userId
+        }
+    })
 
-    const csfUser = await CsfUser.findOne({ userid: user._id });
-    if (!csfUser) {
-      return res.status(401).json({ message: "Not In CSF" });
-    }
-    if (admin) {
-      const isAdmin = csfUser?.isAdmin;
-      if (!isAdmin) {
-        return res.status(401).json({ message: "Missing Permissions" });
-      }
-    }
+    if (user == null) return res.status(401).json({message: "Not Logged In"})
 
-    req.user = user;
-
-    res.set("set-cookie", resp.headers.get("set-cookie") || undefined);
+    if (!roles.includes(user.role)) return res.status(401).json({message: "Unauthorized"})
 
     next();
   };

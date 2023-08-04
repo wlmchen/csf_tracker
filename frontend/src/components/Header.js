@@ -20,20 +20,30 @@ import { useAuth } from "../lib/auth.context";
 import Divider from "@mui/material/Divider";
 
 export default function MenuAppBar() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const navigate = useNavigate();
+  const [accountAnchorEl, setAccountAnchorEl] = React.useState(null);
+  const [navAnchorEl, setNavAnchorEl] = React.useState(null);
+
+  const navigate  =useNavigate();
 
   const { logout, user } = useAuth();
 
   const { theme, toggleTheme } = useTheme();
 
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
+  const handleAccountMenu = (event) => {
+    setAccountAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
+  const handleAccountClose = () => {
+    setAccountAnchorEl(null);
   };
+
+  const handleNavMenu = (event) => {
+    setNavAnchorEl(event.currentTarget)
+  }
+
+  const handleNavClose = () => {
+    setNavAnchorEl(null);
+  }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -51,15 +61,52 @@ export default function MenuAppBar() {
       </FormGroup> */}
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
+          <Tooltip title="Menu">
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              sx={{ mr: 2 }}
+              onClick={handleNavMenu}
+            >
+              <MenuIcon />
+            </IconButton>
+          </Tooltip>
+          <Menu
+            id="menu-appbar"
+            accountAnchorEl={navAnchorEl}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "left",
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "left",
+            }}
+            open={Boolean(navAnchorEl)}
+            onClose={handleNavClose}
           >
-            <MenuIcon />
-          </IconButton>
+            <MenuItem
+              onClick={() => {
+                navigate("/dashboard")
+              }}
+            >
+              Dashboard
+            </MenuItem>
+            {user.role.includes("ADMIN") && <MenuItem onClick={() => {
+              navigate("/admin")
+            }}>
+              Admin
+            </MenuItem>}
+            {user.role == "SITEADMIN" && <MenuItem onClick={() => {
+              navigate("/siteadmin")
+            }}>
+              Site Admin
+            </MenuItem>}
+          </Menu>
+
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             CSF Volunteering
           </Typography>
@@ -70,7 +117,7 @@ export default function MenuAppBar() {
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
-                onClick={handleMenu}
+                onClick={handleAccountMenu}
                 color="inherit"
               >
                 <AccountCircle />
@@ -78,7 +125,7 @@ export default function MenuAppBar() {
             </Tooltip>
             <Menu
               id="menu-appbar"
-              anchorEl={anchorEl}
+              accountAnchorEl={accountAnchorEl}
               anchorOrigin={{
                 vertical: "top",
                 horizontal: "right",
@@ -88,8 +135,8 @@ export default function MenuAppBar() {
                 vertical: "top",
                 horizontal: "right",
               }}
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
+              open={Boolean(accountAnchorEl)}
+              onClose={handleAccountClose}
             >
               <Box sx={{ px: 2, pb: 2, pt: 1 }}>
                 <Typography>{user.name}</Typography>

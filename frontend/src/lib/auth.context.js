@@ -36,13 +36,16 @@ export const AuthProvider = ({ children }) => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            username: email.toLowerCase(),
+            email: email.toLowerCase(),
             password: password,
           }),
           credentials: "include",
         }
       );
-      if (!response.ok) setError("Invalid Credentials");
+      if (!response.ok) {
+        const error = (await response.json()).message;
+        setError(error);
+      }
       else {
         const user = await response.json();
         setUser(user);

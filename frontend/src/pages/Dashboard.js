@@ -109,7 +109,6 @@ export default function Dashboard() {
   return (
     <>
       <Header />
-
       <Container>
         <Box component="main" sx={{ p: 3 }}>
           <Card sx={{ minWidth: 275, marginTop: 2, marginBottom: 2 }}>
@@ -159,9 +158,9 @@ export default function Dashboard() {
                     },
                   })
                     .then((response) => response.json())
-                    .then((data) => {
-                      console.log(data);
-                      setData(data);
+                    .then((newHour) => {
+                      console.log(newHour);
+                      setData([...data, newHour]);
                       resolve();
                     })
                     .catch((error) => {
@@ -172,15 +171,14 @@ export default function Dashboard() {
               onRowDelete: (oldData) => {
                 return new Promise((resolve, reject) => {
                   fetch(
-                    `${process.env.REACT_APP_BACKEND_URL}/hour/${oldData._id}`,
+                    `${process.env.REACT_APP_BACKEND_URL}/hour/${oldData.id}`,
                     {
                       method: "DELETE",
                       credentials: "include",
                     }
                   )
-                    .then((response) => response.json())
-                    .then((data) => {
-                      setData(data);
+                    .then((response) => {
+                      if (response.ok) setData(prevData => (prevData.filter(el => el.id != oldData.id)))
                       resolve();
                     })
                     .catch((error) => {

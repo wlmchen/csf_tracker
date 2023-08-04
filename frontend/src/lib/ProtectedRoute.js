@@ -1,17 +1,16 @@
 import { Outlet, Navigate } from "react-router-dom";
 import { useAuth } from "./auth.context";
 
-const PrivateRoutes = ({ admin, unprotected }) => {
+const PrivateRoutes = ({ roles, unprotected }) => {
   const { user } = useAuth();
 
-  if (admin === true) {
+  if (!unprotected) {
     if (!user) {
       return <Navigate to="/login" />;
     }
-    if (!user.isAdmin) {
+    if (!roles.includes(user.role)) {
       return <Navigate to="/dashboard" />;
     }
-    return <Outlet />;
   }
   if (unprotected === true) {
     if (user) {

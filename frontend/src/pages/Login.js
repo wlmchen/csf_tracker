@@ -30,7 +30,7 @@ export default function Login() {
   };
 
   const [values, setValues] = React.useState({
-    username: "",
+    email: "",
     password: "",
   });
 
@@ -40,7 +40,7 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    login(values.username, values.password);
+    login(values.email, values.password);
   };
 
   return (
@@ -61,10 +61,10 @@ export default function Login() {
           <Box sx={{ display: "flex", alignItems: "flex-end", width: 1 }}>
             <AccountCircle sx={{ color: "action.active", mr: 1, my: 0.5 }} />
             <TextField
-              id="username"
-              label="Username"
-              value={values.username}
-              onChange={handleChange("username")}
+              id="email"
+              label="Email"
+              value={values.email}
+              onChange={handleChange("email")}
               variant="standard"
               fullWidth
             />
