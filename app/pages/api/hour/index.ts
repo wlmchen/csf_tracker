@@ -68,15 +68,20 @@ export default async function handler(
   const resp = await mailer.sendMail({
     from: `CSF Volunteer Tracking <${process.env.MAIL_USERNAME as string}>`,
     to: result.supervisor_contact,
-    subject: `Volunteer Hour Verification (${result.user.name})`,
+    subject: `Volunteer Hour Verification for ${result.user.name}`,
     text: `\
-Please click on the link below to verify that ${result.user.name} has completed the following volunteer hours\n
-Name: ${result.name}
-Description: ${result.description}
-Date: ${result.date.toLocaleDateString("en-US")}
-Hours: ${result.hours}
+Hello, I hope you are having a great day!
 
-${url}
+Please click on the link below to verify that ${result.user.name} has completed the following volunteer hours, as they have listed you as a supervisor. If you have any questions, please contact quarrylanecsf@gmail.com\n
+  Name: ${result.name}
+  Description: ${result.description}
+  Date: ${result.date.toLocaleDateString("en-US")}
+  Hours: ${result.hours}
+
+  ${url}
+
+Sincerely,
+Quarry Lane California Scholarship Federation
   `,
   });
 
