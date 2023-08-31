@@ -72,13 +72,13 @@ export default async function handler(
     text: `\
 Hello, I hope you are having a great day!
 
-Please click on the link below to verify that ${result.user.name} has completed the following volunteer hours, as they have listed you as a supervisor. If you have any questions, please contact quarrylanecsf@gmail.com\n
+Please click on the link below to verify that ${result.user.name} has completed the following volunteer hours, as they have listed you as a supervisor. If you have any questions, please contact quarrylanecsf@gmail.com.\n
   Name: ${result.name}
   Description: ${result.description}
   Date: ${result.date.toLocaleDateString("en-US")}
   Hours: ${result.hours}
 
-  ${url}
+${url}
 
 Sincerely,
 Quarry Lane California Scholarship Federation
