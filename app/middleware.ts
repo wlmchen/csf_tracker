@@ -4,6 +4,8 @@ import { withAuth } from "next-auth/middleware";
 export default withAuth({
   callbacks: {
     async authorized({ req, token }) {
+      if (req.nextUrl.pathname == "/pwreset") return true;
+      if (req.nextUrl.pathname.startsWith("/api/pwreset")) return true;
       if (token?.user == null) return false;
       if (req.nextUrl.pathname === "/admin") {
         return (

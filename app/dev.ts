@@ -3,6 +3,7 @@ import { mailer } from "./lib/mailer";
 import jwt from "jsonwebtoken";
 
 // get dot vars
+require('dotenv').config()
 
 const data = [
   { name: "ok boomer", email: "kaival.s.shah@gmail.com" },
