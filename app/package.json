@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "runscript": "ts-node dev.ts"
   },
   "dependencies": {
     "@emotion/server": "^11.11.0",
@@ -33,6 +34,7 @@
     "@types/node": "^20.4.7",
     "@types/nodemailer": "^6.4.9",
     "prisma": "^5.1.1",
-    "prisma-dbml-generator": "^0.10.0"
+    "prisma-dbml-generator": "^0.10.0",
+    "ts-node": "^10.9.1"
   }
 }
