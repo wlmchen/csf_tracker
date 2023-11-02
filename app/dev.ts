@@ -6,13 +6,15 @@ import jwt from "jsonwebtoken";
 require('dotenv').config()
 
 const data = [
-  { name: "ok boomer", email: "kaival.s.shah@gmail.com" },
+  { name: "Test test", email: "com" },
 ];
 
 async function main() {
+	/*
   await prisma.user.createMany({
     data: data,
   });
+  */
   const users = await prisma.user.findMany({
     where: {
       email: { in: data.map((e) => e.email) },
@@ -33,7 +35,7 @@ const resp = await mailer.sendMail({
     text: `\
 Hello, I hope you are having a great day!
 
-Please click on the link below to reset your password
+Please click on the link below to set your password
 
 ${url}
 
