@@ -1,6 +1,6 @@
 # CSF Volunteer Tracker
 
-Volunteer Hours Tracker. Deployed at <https://volunteering.quarrydev.tech/>
+Volunteer Hours Tracker. 
 
 ## Screenshots
 
