@@ -169,7 +169,7 @@ export default function Dashboard() {
               onRowDelete: (oldData) => {
                 return new Promise<void>((resolve, reject) => {
                   fetch(
-                    `${process.env.REACT_APP_BACKEND_URL}/hour/${oldData.id}`,
+                    `/api/hour/${oldData.id}`,
                     {
                       method: "DELETE",
                       credentials: "include",
