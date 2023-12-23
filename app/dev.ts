@@ -6,15 +6,13 @@ import jwt from "jsonwebtoken";
 require('dotenv').config()
 
 const data = [
-  { name: "Test test", email: "com" },
+  { name: "Test test", email: "edoc.www@gmail.com" },
 ];
 
 async function main() {
-	/*
   await prisma.user.createMany({
     data: data,
   });
-  */
   const users = await prisma.user.findMany({
     where: {
       email: { in: data.map((e) => e.email) },

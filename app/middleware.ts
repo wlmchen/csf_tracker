@@ -7,6 +7,7 @@ export default withAuth({
       if (req.nextUrl.pathname == "/pwreset") return true;
       if (req.nextUrl.pathname.startsWith("/api/pwreset")) return true;
       if (req.nextUrl.pathname.startsWith("/api/verify")) return true;
+      if (req.nextUrl.pathname.startsWith("/forgot")) return true;
       if (token?.user == null) return false;
       if (req.nextUrl.pathname === "/admin") {
         return (

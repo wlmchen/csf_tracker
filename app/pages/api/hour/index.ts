@@ -20,7 +20,7 @@ export default async function handler(
   if (req.method !== "POST") return res.status(400).json({ message: "Oops" });
 
   const response = hourSchema.safeParse(req.body);
-
+  console.log(response)
   if (!response.success) {
     const { errors } = response.error;
 

@@ -10,6 +10,7 @@ import Alert from "@mui/material/Alert";
 import { signIn, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function Login() {
   const { toggleTheme } = useTheme();
@@ -104,6 +105,13 @@ export default function Login() {
             Log In
           </Button>
         </form>
+        <Button
+          component={Link}
+          href="/forgot"
+          sx={{ mt: 5, px: "32px", py: "10px" }}
+        >
+          Forgot Password?
+        </Button>
       </Grid>
       {error && (
         <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
