@@ -4,7 +4,7 @@ require('dotenv').config()
 export default function handler(req, res) {
     try {
         const client = new google.auth.JWT(
-            process.env.CLIENT_EMAIL, null, process.env.PRIVATE_KEY, ['https://www.googleapis.com/auth/spreadsheets']
+            null, null, null, ['https://www.googleapis.com/auth/spreadsheets']
         );
 
         client.authorize(async function(err, tokens) {
