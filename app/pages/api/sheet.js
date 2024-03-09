@@ -1,10 +1,10 @@
 import { google } from "googleapis";
-import keys from "../../keys.json";
+require('dotenv').config()
 
 export default function handler(req, res) {
     try {
         const client = new google.auth.JWT(
-            keys.client_email, null, keys.private_key, ['https://www.googleapis.com/auth/spreadsheets']
+            process.env.CLIENT_EMAIL, null, process.env.PRIVATE_KEY, ['https://www.googleapis.com/auth/spreadsheets']
         );
 
         client.authorize(async function(err, tokens) {
