@@ -30,7 +30,7 @@ const [data, setData] = useState<string[][]>([]);
 const url = (process.env.SERVER_URL || "http://localhost:3000") + "/api/sheet";
 
   useEffect(() => {
-    fetch(url, { mode: 'no-cors' })
+    fetch(url)
       .then((response) => response.json())
       .then((responseData) => {
         setData(responseData.data);
