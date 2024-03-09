@@ -95,6 +95,12 @@ export default function MenuAppBar() {
             >
               Dashboard
             </MenuItem>
+            <MenuItem onClick={() => {
+              push("/events");
+            }}
+              >
+                Events
+              </MenuItem>
             {session?.user?.role?.includes("ADMIN") && (
               <MenuItem
                 onClick={() => {
