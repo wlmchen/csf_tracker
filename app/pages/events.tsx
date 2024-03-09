@@ -29,7 +29,7 @@ const SheetPage: React.FC = () => {
   const [data, setData] = useState<string[][]>([]);
 
   useEffect(() => {
-    fetch('/api/sheet')
+    fetch('http://localhost:3000/api/sheet')
       .then((response) => response.json())
       .then((responseData) => {
         setData(responseData.data);
