@@ -48,7 +48,7 @@ const theme = useTheme();
     <>
     <Header/>
     <Container>
-      <Box mt={2} style={{ padding: '20px' }}>
+      <Box mt={2} style={{ marginTop: '30px', marginBottom: '20px' }}>
         <Typography variant="h4">Opportunities</Typography>
       </Box>
       <Box mt={2}>

@@ -101,6 +101,12 @@ export default function MenuAppBar() {
               >
                 Opportunities
               </MenuItem>
+              <MenuItem onClick={() => {
+              push("/about");
+            }}
+              >
+                About Us
+              </MenuItem>
             {session?.user?.role?.includes("ADMIN") && (
               <MenuItem
                 onClick={() => {
