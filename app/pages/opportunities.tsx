@@ -17,6 +17,9 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Button from "@mui/material/Button";
 // import { headers } from 'next/dist/client/components/headers';
 import Paper from '@mui/material/Paper';
+import Link from 'next/dist/client/link';
+import { useTheme } from "@mui/system";
+
 // pages/index.tsx
 
 
@@ -28,6 +31,7 @@ const headers = ['Organization', 'Opportunity', 'Service Hours', 'Links', 'Comme
 const SheetPage: React.FC = () => {
 const [data, setData] = useState<string[][]>([]);
 const url = "/api/sheet";
+const theme = useTheme();
 
   useEffect(() => {
     fetch(url)
@@ -45,7 +49,7 @@ const url = "/api/sheet";
     <Header/>
     <Container>
       <Box mt={2} style={{ padding: '20px' }}>
-        <Typography variant="h4">Events</Typography>
+        <Typography variant="h4">Opportunities</Typography>
       </Box>
       <Box mt={2}>
       <Paper elevation={3} style={{ padding: '20px', marginBottom: '20px' }}>
@@ -55,7 +59,7 @@ const url = "/api/sheet";
               <TableRow>
                 {headers.map((header, index) => (
                   <TableCell key={index} align="center" style={{ border: '1px solid #ccc', padding: '10px', fontWeight: 'bold' }}>
-                    <Typography variant="h6">{header}</Typography>
+                    <Typography variant="h6" color="textPrimary">{header}</Typography>
                   </TableCell>
                 ))}
               </TableRow>
@@ -65,7 +69,20 @@ const url = "/api/sheet";
                 <TableRow key={rowIndex}>
                   {row.map((cell, cellIndex) => (
                     <TableCell key={cellIndex} align="center" style={{ border: '1px solid #ccc', padding: '10px' }}>
-                      <Typography variant="body1">{cell}</Typography>
+                      {cellIndex === 3 ? (
+                        <Link
+                          href={cell}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{ color: theme.palette.mode === 'dark' ? theme.palette.primary.light : theme.palette.primary.dark }}
+                        >
+                          {cell}
+                        </Link>
+                      ) : (
+                        <Typography variant="body1" color="textPrimary">
+                          {cell}
+                        </Typography>
+                      )}
                     </TableCell>
                   ))}
                 </TableRow>

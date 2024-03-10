@@ -96,10 +96,10 @@ export default function MenuAppBar() {
               Dashboard
             </MenuItem>
             <MenuItem onClick={() => {
-              push("/events");
+              push("/opportunities");
             }}
               >
-                Events
+                Opportunities
               </MenuItem>
             {session?.user?.role?.includes("ADMIN") && (
               <MenuItem
