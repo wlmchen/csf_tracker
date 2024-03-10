@@ -27,7 +27,7 @@ type SheetData = {
 const headers = ['Organization', 'Opportunity', 'Service Hours', 'Links', 'Comments & More Info'];
 const SheetPage: React.FC = () => {
 const [data, setData] = useState<string[][]>([]);
-const url = (process.env.SERVER_URL || "http://localhost:3000") + "/api/sheet";
+const url = "/api/sheet";
 
   useEffect(() => {
     fetch(url)
