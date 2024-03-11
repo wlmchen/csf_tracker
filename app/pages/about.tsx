@@ -38,15 +38,7 @@ const About: NextPage = () => {
             <Typography variant="h4">About California Scholarship Federation (CSF)</Typography>
         </Box>
       <Typography variant="body1" paragraph>
-      The California Scholarship Federation is a nonprofit organization dedicated
-to recognizing and encouraging community service and academic achievement in middle and high
-school students. It emphasizes service to others in one's community while promoting pride in scholastic
-achievement. QLS CSF's core mission is to spread the ideals of civic engagement within the Quarry
-Lane community. We strive to transform students into socially aware leaders who take steps to spread
-compassion and altruism. By awarding students for completing a certain amount of volunteering hours,
-we encourage students to engage with their community in ways that interest them. Our diverse
-volunteering opportunities, ranging from online to in-person in various fields, allow students to use
-their passions for the betterment of society.
+      The California Scholarship Federation is a nonprofit organization dedicated to recognizing and encouraging community service and academic achievement in middle and high school students. It emphasizes service to others in one's community while promoting pride in scholastic achievement. QLS CSF's core mission is to spread the ideals of civic engagement within the Quarry Lane community. We strive to transform students into socially aware leaders who take steps to spread compassion and altruism. By awarding students for completing a certain amount of volunteering hours, we encourage students to engage with their community in ways that interest them. Our diverse volunteering opportunities, ranging from online to in-person in various fields, allow students to use their passions for the betterment of society.
       </Typography>
       <Box mt={2} style={{ marginTop: '20px', marginBottom: '20px' }}>
         <Typography variant="h4" gutterBottom>
