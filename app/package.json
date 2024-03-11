@@ -10,9 +10,13 @@
     "runscript": "ts-node dev.ts"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.4",
     "@emotion/server": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
     "@material-table/core": "^0.2.35",
     "@material-ui/core": "^4.12.4",
+    "@mui/icons-material": "^5.15.12",
+    "@mui/material": "^5.15.12",
     "@prisma/client": "^5.1.1",
     "@types/react": "18.2.18",
     "@types/react-dom": "18.2.7",
