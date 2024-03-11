@@ -19,6 +19,7 @@ import Button from "@mui/material/Button";
 import Paper from '@mui/material/Paper';
 import Link from 'next/dist/client/link';
 import { useTheme } from "@mui/system";
+import TableCellComponent from '../components/TableCell';
 
 // pages/index.tsx
 
@@ -53,124 +54,30 @@ const theme = useTheme();
       </Box>
       <Box mt={2}>
       <Paper elevation={3} style={{ padding: '20px', marginBottom: '20px' }}>
-        <TableContainer>
-          <Table>
-            <TableHead>
-              <TableRow>
-                {headers.map((header, index) => (
-                  <TableCell key={index} align="center" style={{ border: '1px solid #ccc', padding: '10px', fontWeight: 'bold' }}>
-                    <Typography variant="h6" color="textPrimary">{header}</Typography>
-                  </TableCell>
-                ))}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {data.map((row, rowIndex) => (
-                <TableRow key={rowIndex}>
-                  {row.map((cell, cellIndex) => (
-                    <TableCell key={cellIndex} align="center" style={{ border: '1px solid #ccc', padding: '10px' }}>
-                      {cellIndex === 3 ? (
-                        <Link
-                          href={cell}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          style={{ color: theme.palette.mode === 'dark' ? theme.palette.primary.light : theme.palette.primary.dark }}
-                        >
-                          {cell}
-                        </Link>
-                      ) : (
-                        <Typography variant="body1" color="textPrimary">
-                          {cell}
-                        </Typography>
-                      )}
-                    </TableCell>
-                  ))}
-                </TableRow>
+      <TableContainer>
+      <Table>
+        <TableHead>
+          <TableRow>
+            {headers.map((header, index) => (
+              <TableCell key={index} align="center" style={{ border: '1px solid #ccc', padding: '10px', fontWeight: 'bold' }}>
+                <Typography variant="h6" color="textPrimary">{header}</Typography>
+              </TableCell>
+            ))}
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {data.map((row, rowIndex) => (
+            <TableRow key={rowIndex}>
+              {row.map((cell, cellIndex) => (
+                <TableCellComponent key={cellIndex} cell={cell} theme={theme} />
               ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
       </Paper>
     </Box>
-      {/* <Box mt={2}>
-        <Paper elevation={3} style={{ padding: '20px', marginBottom: '20px' }}>
-            <TableContainer>
-            <Table>
-                <TableHead>
-                <TableRow>
-                    {headers.map((header, index) => (
-                    <TableCell key={index} align="center" style={{ border: '1px solid #ccc', padding: '10px', fontWeight: 'bold' }}>
-                        {header}
-                    </TableCell>
-                    ))}
-                </TableRow>
-                </TableHead>
-                <TableBody>
-                {data.map((row, rowIndex) => (
-                    <TableRow key={rowIndex}>
-                    {row.map((cell, cellIndex) => (
-                        <TableCell key={cellIndex} align="center" style={{ border: '1px solid #ccc', padding: '10px' }}>
-                        {cell}
-                        </TableCell>
-                    ))}
-                    </TableRow>
-                ))}
-                </TableBody>
-            </Table>
-            </TableContainer>
-        </Paper>
-        </Box> */}
-      {/* <Box mt={2}>
-        <Paper elevation={3} style={{ padding: '20px', marginBottom: '20px' }}>
-            {data.map((row, rowIndex) => (
-            <div key={rowIndex} style={{ display: 'flex', borderBottom: '1px solid #ccc' }}>
-                {row.map((item, columnIndex) => (
-                <div key={columnIndex} style={{ padding: '10px', flex: 1, textAlign: 'center', borderRight: '1px solid #ccc' }}>
-                    {item}
-                </div>
-                ))}
-            </div>
-            ))}
-        </Paper>
-        </Box> */}
-
-      {/* <Box mt={2}>
-        <Paper elevation={3} style={{ padding: '20px', marginBottom: '20px' }}>
-            {data.map((row, rowIndex) => (
-            <div key={rowIndex} style={{ display: 'flex', borderBottom: '1px solid #ccc' }}>
-                {row.map((item, columnIndex) => (
-                <div key={columnIndex} style={{ padding: '10px', flex: 1 }}>
-                    {item}
-                </div>
-                ))}
-            </div>
-            ))}
-        </Paper>
-        </Box> */}
-
-      {/* <Box mt={2}>
-        {data.map((row, rowIndex) => (
-            <Paper key={rowIndex} elevation={3} style={{ padding: '20px', marginBottom: '20px' }}>
-            <div style={{ display: 'flex', flexDirection: 'column', border: '1px solid #ccc', padding: '10px' }}>
-                {row.map((item, columnIndex) => (
-                <div key={columnIndex} style={{ borderBottom: '1px solid #ccc', padding: '10px' }}>
-                    {item}
-                </div>
-                ))}
-            </div>
-            </Paper>
-        ))}
-        </Box> */}
-
-      {/* <Box mt={2}>
-        {data.map((row, rowIndex) => (
-          <Paper key={rowIndex} elevation={3} style={{ padding: '20px', marginBottom: '20px' }}>
-            {row.map((item, columnIndex) => (
-              <div key={columnIndex}>{item}</div>
-            ))}
-          </Paper>
-        ))}
-      </Box> */}
     </Container>
     </>
   );
