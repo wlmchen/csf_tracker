@@ -150,11 +150,11 @@ export default function Admin() {
                   <Typography sx={{ color: "text.secondary" }}>
                     {member.hours
                       .filter((hour) => hour.approved)
-                      .reduce((total, obj) => obj.hours + total, 0)}{" "}
+                      .reduce((total, obj) => total + Number(obj.hours), 0)}{" "}
                     Approved Hours,{" "}
                     {member.hours
                       .filter((hour) => !hour.approved)
-                      .reduce((total, obj) => obj.hours + total, 0)}{" "}
+                      .reduce((total, obj) => total + Number(obj.hours), 0)}{" "}
                     Pending Hours
                   </Typography>
                 </AccordionSummary>
