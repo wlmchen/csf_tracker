@@ -25,7 +25,7 @@
     "eslint-config-next": "13.4.12",
     "googleapis": "^133.0.0",
     "jsonwebtoken": "^9.0.1",
-    "next": "^13.5.6",
+    "next": "^14.2.3",
     "next-auth": "^4.22.3",
     "node-cache": "^5.1.2",
     "nodemailer": "^6.9.4",

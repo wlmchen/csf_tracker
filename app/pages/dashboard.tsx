@@ -94,7 +94,7 @@ export default function Dashboard() {
   }
 
   function getTotalHours() {
-    return getHours(true).reduce((total, obj) => obj.hours + total, 0);
+    return getHours(true).reduce((total, obj) => Number(obj.hours) + total, 0);
   }
 
   function normalize(hours: number) {
